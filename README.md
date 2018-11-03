@@ -7,14 +7,14 @@ Haxe of course.
 The library *haxe-crypto*
 
 ### Testing use
-Only to use with small files, unless you like waiting and many lines of Hexadecimal output.
-Gives some extra trace output
+Only to use with small files, unless you like waiting and many lines of hexadecimal output.
+Gives some extra trace output.
 `haxe run.hxml`
 
 ### Production use
-Compile to cpp `haxe cpp.hxml`
-Put your swfs in de directory __unencrypted__
-Start encrypting your files with `bin/EncryptSWF`
+Compile to cpp `haxe cpp.hxml`.
+Put your swfs in de directory __unencrypted__.
+Start encrypting your files with `bin/EncryptSWF`.
 
 ### Who made this
 This is made by Fabian de Boer
