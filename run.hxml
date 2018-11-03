@@ -1,0 +1,11 @@
+# main class directory
+-cp src
+
+# main class
+-main EncryptSWF
+
+#run in terminal
+--interp
+
+#use lib
+-lib haxe-crypto

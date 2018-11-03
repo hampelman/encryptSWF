@@ -1,0 +1,17 @@
+# main class directory
+-cp src
+
+# main class
+-main EncryptSWF
+
+#use lib
+-lib haxe-crypto
+
+#no traces
+--no-traces
+
+#cpp compiler flag
+-D cplusplus
+
+#target c++
+-cpp bin
