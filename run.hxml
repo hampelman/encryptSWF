@@ -7,5 +7,7 @@
 #run in terminal
 --interp
 
+-D showTrace
+
 #use lib
 -lib haxe-crypto

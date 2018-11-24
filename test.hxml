@@ -1,0 +1,14 @@
+# main class directory
+-cp src
+
+#use lib
+-lib haxe-crypto
+
+# main class
+-main TestSWF
+
+#make swf
+-swf bin/decryptAndShowSwf.swf
+
+#width and height
+-swf-header 960:640:30:ffffff

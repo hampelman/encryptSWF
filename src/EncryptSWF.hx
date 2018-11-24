@@ -1,6 +1,10 @@
-import com.hurlant.util.ByteArray;
-import sys.FileSystem;
+package;
 
+#if !flash
+import sys.FileSystem;
+#end
+
+import com.hurlant.util.ByteArray;
 import com.hurlant.crypto.symmetric.AESKey;
 import com.hurlant.util.Hex;
 import haxe.io.Bytes;
@@ -15,13 +19,12 @@ import cpp.Lib;
 class EncryptSWF
 {
 	/* constants */
-
-
 	static private var swfDirectory = "unencrypted";
 	static private var encryptDirectory = "encrypted";
 	static private var fileExtension = "jpg"; // this is a nasty trick (haha!): disguise my swf as a jpg
 	static private var hexKey = "2C2D2E2F31323334363738393B3C3D3E"; // fill in your own 128 / 256 bit hexadecimal key
 
+	#if !flash
 	static public function main()
 	{
 		if (fileSystemAvailable())
@@ -33,6 +36,7 @@ class EncryptSWF
 			trace('no file system functionality available');
 		}
 	}
+
 
 	static private function readFiles()
 	{
@@ -73,7 +77,7 @@ class EncryptSWF
 			}
 		}
 	}
-
+	#end
 
 	static private function encryptBytes(bt:Bytes):Bytes
 	{
@@ -116,17 +120,21 @@ class EncryptSWF
 		var key = Hex.toArray(hexKey);
 		var aes = new AESKey(key);
 		var keyLength = key.length;
-		var block:com.hurlant.util.ByteArray;
+		var block:ByteArray;
 		var maxBt = Math.floor(bt.length / keyLength);
 		var i = 0;
 		while (i < maxBt)
 		{
 			//trace ("i2: " + i);
 			block = ByteArray.fromBytes(bt.sub(i*keyLength,keyLength));
-			trace ('dec - block encoded : ' + Hex.fromArray(block).toUpperCase());
+			#if showTrace
+				trace ('dec - block encoded : ' + Hex.fromArray(block).toUpperCase());
+			#end
 			//do the encoding
 			aes.decrypt(block);
-			trace ('dec - block decoded : ' + Hex.fromArray(block).toUpperCase());
+			#if showTrace
+				trace ('dec - block decoded : ' + Hex.fromArray(block).toUpperCase());
+			#end
 			result.add( block.getBytes());
 			i++;
 		}
@@ -149,6 +157,8 @@ class EncryptSWF
 			return returnBytes;
 		}
 	}
+
+
 
 	static private function fileSystemAvailable():Bool
 	{
